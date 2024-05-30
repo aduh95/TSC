@@ -22,8 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29  # v4.1.6
-        with:
-          persist-credentials: false
       # If the subject is still REPLACEME, that would mean it's a PR to modify
       # the sample file, not a PR initializing a vote.
       - run: '! grep -q "subject: REPLACEME" votes/initiateNewVote.yml'
@@ -44,7 +42,7 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             /repos/${{ github.repository }}/git/refs \
             -f ref='refs/heads/initiateNewVote' \
-            -f sha='${{ github.event.pull_request.base.sha }}'
+            -f sha='${{ github.event.pull_request.base.sha }}' || true
           gh pr edit ${{ github.event.pull_request.html_url }} --base 'initiateNewVote'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -57,8 +55,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29  # v4.1.6
-        with:
-          persist-credentials: true  # we need the credentials to push the new vote branch
       - name: Install Node.js
         uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c  # v3.6.0
         with:
@@ -113,9 +109,9 @@ jobs:
             gpg-agent --daemon --allow-preset-passphrase \
             --default-cache-ttl 60 --max-cache-ttl 60
           fi
-      - name: Generate the vote branch and PR
+      - name: Generate the vote init commit
         run: |
-          ./votes/initiateNewVote/generateNewVotePR.mjs \
+          ./votes/initiateNewVote/generateNewVote.mjs \
             --remote origin \
             --github-repo-name "$GITHUB_REPOSITORY" \
             --vote-repository-path . \
@@ -124,8 +120,7 @@ jobs:
             ${{ env.__CANDIDATES }} \
             --shuffle-candidates "$__SHUFFLE_CANDIDATES" \
             --header-instructions "$__HEADER_INSTRUCTIONS" \
-            --footer-instructions "$__FOOTER_INSTRUCTIONS" \
-            --create-pull-request --pr-intro "$__PR_INTRO"
+            --footer-instructions "$__FOOTER_INSTRUCTIONS"
         env:
           GH_TOKEN: ${{ github.token }}
           __BRANCH: ${{ steps.data.outputs.branchName }}
@@ -133,9 +128,35 @@ jobs:
           __SHUFFLE_CANDIDATES: ${{ fromJSON(steps.data.outputs.json_data).canShuffleCandidates }}
           __HEADER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).headerInstructions }}
           __FOOTER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).footerInstructions }}
-          __PR_INTRO: ${{ fromJSON(steps.data.outputs.json_data).prBody }}
-      - name: Remove initiateNewVote branch
+      - name: Generate the vote branch
         run: |
+          go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
+          ghcommit -r ${{ github.repository }} -b "${{ steps.data.outputs.branchName }}" -m "$(
+            git log -1 --pretty=format:%B
+          )" --sha "$(
+            git rev-parse HEAD^
+          )" $(
+            git log --name-only -1 --diff-filter=D --pretty=format: | awk '{ print "--delete " $0 " \\" }'
+            echo " "
+          ) $(
+            git log --name-only -1 --diff-filter=A --pretty=format: | awk '{ print "--add " $0 " \\" }'
+            echo " "
+          );
+      - name: Open the vote PR
+        run: |
+          ./votes/initiateNewVote/generateNewVotePR.mjs \
+            --github-repo-name "$GITHUB_REPOSITORY" \
+            --branch "$__BRANCH" \
+            --subject "$__SUBJECT" \
+            --create-pull-request --pr-intro "$__PR_INTRO"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          __BRANCH: ${{ steps.data.outputs.branchName }}
+          __SUBJECT: ${{ fromJSON(steps.data.outputs.json_data).subject }}
+          __PR_INTRO: ${{ fromJSON(steps.data.outputs.json_data).prBody }}
+      - name: Remove initiateNewVote branch if there are no open PRs
+        run: |
+          gh search prs --repo=${{ github.repository }} --state open -B initiateNewVote --jq 'if . | length == 0 then error("No open PR") else 0 end' --json id || \
           gh api \
             --method DELETE \
             -H "Accept: application/vnd.github+json" \
