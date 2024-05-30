@@ -131,7 +131,7 @@ jobs:
       - name: Generate the vote branch
         run: |
           go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
-          ghcommit -r ${{ github.repository }} -b "${{ steps.data.outputs.branchName }}" -m "$(
+          "$GOPATH/ghcommit" -r ${{ github.repository }} -b "${{ steps.data.outputs.branchName }}" -m "$(
             git log -1 --pretty=format:%B
           )" --sha "$(
             git rev-parse HEAD^
