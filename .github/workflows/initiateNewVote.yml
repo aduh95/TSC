@@ -138,14 +138,14 @@ jobs:
         run: |
           set -x
           "$(go env GOPATH)/bin/ghcommit" -r ${{ github.repository }} -b "${{ steps.data.outputs.branchName }}" -m "$(
-            git log -1 --pretty=format:%B
+            git show HEAD --pretty=format:%B
           )" --sha "$(
             git rev-parse HEAD^
           )" $(
-            git log --name-only -1 --diff-filter=D --pretty=format: | awk '{ print "--delete " $0 " \\" }'
+            git show HEAD --name-only --diff-filter=D --pretty=format: | awk '{ print "--delete ' "'" '" $0 "' "'" ' " }'
             echo " "
           ) $(
-            git log --name-only -1 --diff-filter=A --pretty=format: | awk '{ print "--add " $0 " \\" }'
+            git show HEAD --name-only --diff-filter=d --pretty=format: | awk '{ print "--add ' "'" '" $0 "' "'" ' " }'
             echo " "
           );
         env:
@@ -175,14 +175,14 @@ jobs:
             git reset HEAD^ --hard
             git revert HEAD --no-edit
             "$(go env GOPATH)/bin/ghcommit" -m "$(
-              git log -1 --pretty=format:%B
+              git show HEAD --pretty=format:%B
             )" --sha "$(
               git rev-parse HEAD^
             )" $(
-              git log --name-only -1 --diff-filter=D --pretty=format: | awk '{ print "--delete " $0 " \\" }'
+              git show HEAD --name-only --diff-filter=D --pretty=format: | awk '{ print "--delete ' "'" '" $0 "' "'" ' " }'
               echo " "
             ) $(
-              git log --name-only -1 --diff-filter=A --pretty=format: | awk '{ print "--add " $0 " \\" }'
+              git show HEAD --name-only --diff-filter=A --pretty=format: | awk '{ print "--add ' "'" '" $0 "' "'" ' " }'
               echo " "
             );
           fi
