@@ -49,7 +49,7 @@ jobs:
             -f sha='${{ github.event.pull_request.base.sha }}' || true
           gh pr edit ${{ github.event.pull_request.html_url }} --base 'initiateNewVote'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
   initiate-new-vote:
     if: github.event.pusher
     permissions:
@@ -126,7 +126,7 @@ jobs:
             --header-instructions "$__HEADER_INSTRUCTIONS" \
             --footer-instructions "$__FOOTER_INSTRUCTIONS"
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           __BRANCH: ${{ steps.data.outputs.branchName }}
           __SUBJECT: ${{ fromJSON(steps.data.outputs.json_data).subject }}
           __SHUFFLE_CANDIDATES: ${{ fromJSON(steps.data.outputs.json_data).canShuffleCandidates }}
@@ -148,7 +148,7 @@ jobs:
             echo " "
           );
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Open the vote PR
         run: |
           ./votes/initiateNewVote/generateNewVotePR.mjs \
@@ -157,7 +157,7 @@ jobs:
             --subject "$__SUBJECT" \
             --create-pull-request --pr-intro "$__PR_INTRO"
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           __BRANCH: ${{ steps.data.outputs.branchName }}
           __SUBJECT: ${{ fromJSON(steps.data.outputs.json_data).subject }}
           __PR_INTRO: ${{ fromJSON(steps.data.outputs.json_data).prBody }}
@@ -185,4 +185,4 @@ jobs:
             );
           fi
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
