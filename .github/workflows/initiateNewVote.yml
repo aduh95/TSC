@@ -136,18 +136,26 @@ jobs:
         run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
       - name: Generate the vote branch
         run: |
-          set -x
-          "$(go env GOPATH)/bin/ghcommit" -r ${{ github.repository }} -b "${{ steps.data.outputs.branchName }}" -m "$(
+          GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
             git show HEAD --pretty=format:%B
-          )" --sha "$(
+          )" SHA="$(
             git rev-parse HEAD^
-          )" $(
-            git show HEAD --name-only --diff-filter=D --pretty=format: | awk '{ print "--delete ' "'" '" $0 "' "'" ' " }'
-            echo " "
-          ) $(
-            git show HEAD --name-only --diff-filter=d --pretty=format: | awk '{ print "--add ' "'" '" $0 "' "'" ' " }'
-            echo " "
-          );
+          )" DELETED_FILES="$(
+            git show HEAD --name-only --diff-filter=D --pretty=format:
+          )" ADDED_FILES="$(
+            git show HEAD --name-only --diff-filter=d --pretty=format:
+          )" node --input-type=module <<'EOF'
+            import { spawnSync } from "node:child_process";
+            const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
+            spawnSync(GH_COMMIT_PATH, [
+              '-r', ${{ toJSON(github.repository) }},
+              '-b', ${{ toJSON(steps.data.outputs.branchName) }},
+              '-m', COMMIT_MESSAGE,
+              '--sha', SHA,
+              ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file]),
+              ...ADDED_FILES.split('\n').flatMap(file => ['--add', file]),
+            ], { stdio: 'inherit' });
+          EOF
         env:
           GITHUB_TOKEN: ${{ github.token }}
       - name: Open the vote PR
@@ -174,17 +182,26 @@ jobs:
           else
             git reset HEAD^ --hard
             git revert HEAD --no-edit
-            "$(go env GOPATH)/bin/ghcommit" -m "$(
+            GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
               git show HEAD --pretty=format:%B
-            )" --sha "$(
+            )" SHA="$(
               git rev-parse HEAD^
-            )" $(
-              git show HEAD --name-only --diff-filter=D --pretty=format: | awk '{ print "--delete ' "'" '" $0 "' "'" ' " }'
-              echo " "
-            ) $(
-              git show HEAD --name-only --diff-filter=A --pretty=format: | awk '{ print "--add ' "'" '" $0 "' "'" ' " }'
-              echo " "
-            );
+            )" DELETED_FILES="$(
+              git show HEAD --name-only --diff-filter=D --pretty=format:
+            )" ADDED_FILES="$(
+              git show HEAD --name-only --diff-filter=d --pretty=format:
+            )" node --input-type=module <<'EOF'
+              import { spawnSync } from "node:child_process";
+              const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
+              spawnSync(GH_COMMIT_PATH, [
+                '-r', ${{ toJSON(github.repository) }},
+                '-b', ${{ toJSON(steps.data.outputs.branchName) }},
+                '-m', COMMIT_MESSAGE,
+                '--sha', SHA,
+                ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file]),
+                ...ADDED_FILES.split('\n').flatMap(file => ['--add', file]),
+              ], { stdio: 'inherit' });
+            EOF
           fi
         env:
           GITHUB_TOKEN: ${{ github.token }}
