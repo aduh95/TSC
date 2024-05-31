@@ -12,6 +12,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   lint-vote-init-file:
     if: github.event.pull_request && github.event.pull_request.draft == false
@@ -128,9 +132,10 @@ jobs:
           __SHUFFLE_CANDIDATES: ${{ fromJSON(steps.data.outputs.json_data).canShuffleCandidates }}
           __HEADER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).headerInstructions }}
           __FOOTER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).footerInstructions }}
+      - name: Install ghcommit 
+        run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
       - name: Generate the vote branch
         run: |
-          go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
           "$(go env GOPATH)/bin/ghcommit" -r ${{ github.repository }} -b "${{ steps.data.outputs.branchName }}" -m "$(
             git log -1 --pretty=format:%B
           )" --sha "$(
@@ -142,6 +147,8 @@ jobs:
             git log --name-only -1 --diff-filter=A --pretty=format: | awk '{ print "--add " $0 " \\" }'
             echo " "
           );
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Open the vote PR
         run: |
           ./votes/initiateNewVote/generateNewVotePR.mjs \
