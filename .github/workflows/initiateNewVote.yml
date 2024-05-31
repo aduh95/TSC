@@ -136,6 +136,7 @@ jobs:
         run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
       - name: Generate the vote branch
         run: |
+          set -x
           "$(go env GOPATH)/bin/ghcommit" -r ${{ github.repository }} -b "${{ steps.data.outputs.branchName }}" -m "$(
             git log -1 --pretty=format:%B
           )" --sha "$(
@@ -163,6 +164,7 @@ jobs:
           __PR_INTRO: ${{ fromJSON(steps.data.outputs.json_data).prBody }}
       - name: Remove initiateNewVote branch if there are no open PRs, or revert commit 
         run: |
+          set -x
           if [[ "$(gh search prs --repo=${{ github.repository }} --state open -B initiateNewVote --jq '. | length' --json id)" == "0" ]]; then
             gh api \
               --method DELETE \
