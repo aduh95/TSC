@@ -149,7 +149,7 @@ jobs:
             import {existsSync} from "node:fs";
             const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
             console.log({GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES})
-            console.log(ADDED_FILES.split('\n').filter(Boolean).map(existsSync))
+            console.log(ADDED_FILES.split('\n').filter(Boolean).flatMap(file => [file, existsSync(file)]))
             spawnSync(GH_COMMIT_PATH, [
               '-r', ${{ toJSON(github.repository) }},
               '-b', ${{ toJSON(steps.data.outputs.branchName) }},
