@@ -134,7 +134,7 @@ jobs:
           __FOOTER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).footerInstructions }}
       # - name: Install ghcommit 
       #   run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
-      - run: ls -lah votes/ebbcf30b-29b0-458c-8f17-29807e20c523
+      - run: ls -lah votes/*
       - name: Generate the vote branch
         run: |
           GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
