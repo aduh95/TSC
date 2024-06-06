@@ -132,8 +132,8 @@ jobs:
           __SHUFFLE_CANDIDATES: ${{ fromJSON(steps.data.outputs.json_data).canShuffleCandidates }}
           __HEADER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).headerInstructions }}
           __FOOTER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).footerInstructions }}
-      - name: Install ghcommit 
-        run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
+      # - name: Install ghcommit 
+      #   run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
       - name: Generate the vote branch
         run: |
           GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
@@ -146,8 +146,10 @@ jobs:
             git show HEAD --name-only --diff-filter=d --pretty=format:
           )" node --input-type=module <<'EOF'
             import { spawnSync } from "node:child_process";
+            import {existsSync} from "node:fs";
             const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
             console.log({GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES})
+            console.log(ADDED_FILES.split('\n').filter(Boolean).map(existsSync))
             spawnSync(GH_COMMIT_PATH, [
               '-r', ${{ toJSON(github.repository) }},
               '-b', ${{ toJSON(steps.data.outputs.branchName) }},
