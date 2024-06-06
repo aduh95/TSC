@@ -164,7 +164,7 @@ jobs:
             --github-repo-name "$GITHUB_REPOSITORY" \
             --branch "$__BRANCH" \
             --subject "$__SUBJECT" \
-            --create-pull-request --pr-intro "$__PR_INTRO"
+            --pr-intro "$__PR_INTRO"
         env:
           GITHUB_TOKEN: ${{ github.token }}
           __BRANCH: ${{ steps.data.outputs.branchName }}
