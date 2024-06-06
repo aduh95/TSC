@@ -154,8 +154,8 @@ jobs:
               '-b', ${{ toJSON(steps.data.outputs.branchName) }},
               '-m', COMMIT_MESSAGE,
               '--sha', SHA,
-              ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file]),
-              ...ADDED_FILES.split('\n').flatMap(file => ['--add', file]),
+              ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file.trim()]),
+              ...ADDED_FILES.split('\n').flatMap(file => ['--add', file.trim()]),
             ], { stdio: 'inherit' });
           EOF
         env:
