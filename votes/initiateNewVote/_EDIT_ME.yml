@@ -39,7 +39,7 @@ footerInstructions: |
 
 # 6. Optionally, insert a brief introduction for the vote PR, in the markdown format.
 prBody: |
-  nevermind
+  nevermind just a test
 
 # 7. Optionally, choose an id that will be used for the branch name as well as
 #    the vote folder name. If not supplied, a UUID will be used.
