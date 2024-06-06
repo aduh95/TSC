@@ -132,6 +132,7 @@ jobs:
           __SHUFFLE_CANDIDATES: ${{ fromJSON(steps.data.outputs.json_data).canShuffleCandidates }}
           __HEADER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).headerInstructions }}
           __FOOTER_INSTRUCTIONS: ${{ fromJSON(steps.data.outputs.json_data).footerInstructions }}
+      - run: git show HEAD
       - name: Install ghcommit 
         run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
       - name: Generate the vote branch
@@ -147,6 +148,7 @@ jobs:
           )" node --input-type=module <<'EOF'
             import { spawnSync } from "node:child_process";
             const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
+            console.log({GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES})
             spawnSync(GH_COMMIT_PATH, [
               '-r', ${{ toJSON(github.repository) }},
               '-b', ${{ toJSON(steps.data.outputs.branchName) }},
@@ -201,7 +203,7 @@ jobs:
                 ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file]),
                 ...ADDED_FILES.split('\n').flatMap(file => ['--add', file]),
               ], { stdio: 'inherit' });
-            EOF
+          EOF
           fi
         env:
           GITHUB_TOKEN: ${{ github.token }}
