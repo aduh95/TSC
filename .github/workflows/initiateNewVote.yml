@@ -138,7 +138,7 @@ jobs:
       - name: Generate the vote branch
         run: |
           GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
-            git show HEAD --pretty=format:%B
+            git log -1 HEAD --pretty=format:%B
           )" SHA="$(
             git rev-parse HEAD^
           )" DELETED_FILES="$(
@@ -149,13 +149,13 @@ jobs:
             import { spawnSync } from "node:child_process";
             const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
             console.log({GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES})
-            spawnSync(GH_COMMIT_PATH, [
+            console.log(GH_COMMIT_PATH, [
               '-r', ${{ toJSON(github.repository) }},
               '-b', ${{ toJSON(steps.data.outputs.branchName) }},
               '-m', COMMIT_MESSAGE,
               '--sha', SHA,
-              ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file.trim()]),
-              ...ADDED_FILES.split('\n').flatMap(file => ['--add', file.trim()]),
+              ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file]),
+              ...ADDED_FILES.split('\n').flatMap(file => ['--add', file]),
             ], { stdio: 'inherit' });
           EOF
         env:
