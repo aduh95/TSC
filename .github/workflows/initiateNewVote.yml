@@ -135,6 +135,7 @@ jobs:
       # - name: Install ghcommit 
       #   run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
       - run: ls -lah votes/*
+      - run: git status -s --porcelain=v1 -z
       - name: Generate the vote branch
         run: |
           GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
