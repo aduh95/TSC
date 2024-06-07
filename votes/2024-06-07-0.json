@@ -1,0 +1,18 @@
+{
+  "description": "Vote test 3",
+  "outcome": {
+    "winner(s)": [
+      "Alice",
+      "Bob",
+      "Charlie"
+    ]
+  },
+  "votes": {
+    "Antoine du Hamel <duhamelantoine1995@gmail.com>": {
+      "Bob": 0,
+      "Alice": 0,
+      "Charlie": 0
+    }
+  },
+  "refs": "https://github.com/aduh95/TSC/pull/26"
+}
