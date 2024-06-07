@@ -149,7 +149,7 @@ for await (const member of readReadme(readLines({ input, crlfDelay }))) {
 
 input.destroy?.();
 
-const shareholdersThreshold = 3; // Math.ceil(tscMembersArray.length / 4);
+const shareholdersThreshold = 1; // Math.ceil(tscMembersArray.length / 4);
 
 const keyServerURL = "hkps://keys.openpgp.org";
 

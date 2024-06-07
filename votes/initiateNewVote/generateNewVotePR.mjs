@@ -5,7 +5,7 @@ import { prOptions, createVotePR } from "./_generateNewVotePR.mjs";
 
 const { values: argv } = parseArgs({ options: prOptions });
 
-const shareholdersThreshold = 3;
+const shareholdersThreshold = 1;
 
 const keyServerURL = "hkps://keys.openpgp.org";
 
