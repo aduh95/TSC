@@ -79,20 +79,30 @@ jobs:
           echo "$EOF" >> "$GITHUB_OUTPUT"
         env:
           COMMENTS: ${{ steps.comments.outputs.comments }}
+      - name: Install ghcommit 
+        run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
       - name: Push to the PR branch
         run: |
-          go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
-          ghcommit -r ${{ github.repository }} -b "${{ steps.branch.outputs.head }}" -m "$(
-            git log -1 --pretty=format:%B
-          )" --sha "$(
+          GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
+            git log -1 HEAD --pretty=format:%B
+          )" SHA="$(
             git rev-parse HEAD^
-          )" $(
-            git log --name-only -1 --diff-filter=D --pretty=format: | awk '{ print "--delete " $0 " \\" }'
-            echo " "
-          ) $(
-            git log --name-only -1 --diff-filter=A --pretty=format: | awk '{ print "--add " $0 " \\" }'
-            echo " "
-          );
+          )" DELETED_FILES="$(
+            git show HEAD --name-only --diff-filter=D --pretty=format:
+          )" ADDED_FILES="$(
+            git show HEAD --name-only --diff-filter=d --pretty=format:
+          )" node --input-type=module <<'EOF'
+            import { spawnSync } from "node:child_process";
+            const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
+            spawnSync(GH_COMMIT_PATH, [
+              '-r', ${{ toJSON(github.repository) }},
+              '-b', ${{ toJSON(steps.branch.outputs.head) }},
+              '-m', COMMIT_MESSAGE,
+              '--sha', SHA,
+              ...DELETED_FILES.split('\n').filter(Boolean).flatMap(file => ['--delete', file]),
+              ...ADDED_FILES.split('\n').filter(Boolean).flatMap(file => ['--add', file]),
+            ], { stdio: 'inherit' });
+          EOF
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish vote summary comment
