@@ -1,0 +1,19 @@
+subject: Vote test 3
+
+# Please set a score to each proposal according to your preferences.
+# You should set the highest score to your favorite option.
+# Negative scores are allowed, only the order matters.
+# You can tie two or more proposals if you have no preference.
+# To abstain, keep all the propositions tied.
+
+preferences:
+  - title: Bob
+    score: 0
+  - title: Alice
+    score: 0
+  - title: Charlie
+    score: 0
+poolChecksum: >-
+  d2+WP0DUB+4PBvwWIsTEGiMpWAvz7bIAAXgKiYknIjeZukl3WS7STvFS1RKi72eNRyYEtERSB6dfiyJLzFnQ4A==
+
+# TBD

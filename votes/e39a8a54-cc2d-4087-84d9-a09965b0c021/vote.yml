@@ -1,0 +1,49 @@
+subject: Vote test 3
+headerInstructions: |
+  Please set a score to each proposal according to your preferences.
+  You should set the highest score to your favorite option.
+  Negative scores are allowed, only the order matters.
+  You can tie two or more proposals if you have no preference.
+  To abstain, keep all the propositions tied.
+candidates:
+  - Alice
+  - Bob
+  - Charlie
+footerInstructions: |
+  TBD
+method: Condorcet
+allowedVoters:
+  - Antoine du Hamel <duhamelantoine1995@gmail.com>
+  - Stéphane du Hamel <stephdham@gmail.com>
+publicKey: |
+  -----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx5dIWV/NhfdQWOIJ70pP
+  UhKLeDpsoWpTi3nyf0gl6e0ct3z9ZGcBin0hzZcBcblRU6F0u2zmzTdh+n3++wVn
+  e+xmgpz4te/D0D2uB0ur1KMsjI0CaExyEKqbKXgxl+VADpEwH8V+pbIjntqbQYhH
+  uKgn3iGEAZKOYLJ5Yv5QoF8RWsgzKnJP4t81RhT3uiOfcFFrVZKSrWyfltJkfMd/
+  /0y2dTsT4VRPq6gITyQhLbyK3LnOifKFmz3S+Zd6gWC7lOBaVN6lS3z+JEfGXHKj
+  dm/8uP6kKErHnPZ1tve0UkNOHpCDd0tlZCHmjysJiAsqMvpJfS8QI13F2NDlYQae
+  fQIDAQAB
+  -----END PUBLIC KEY-----
+encryptedPrivateKey: >-
+  U2FsdGVkX1/rGbQO9BOqMd2BR+CXnP98kqS/XRDHyGCVYJXs/XMA9W4gSvYEnGkBOCvhLksPOEz2qYBlf7DHI5V6rZOZKcnvKqstnXSrK3H4fUo1N8u/0BJ0dbk/3TwhWQFaUXwSHLL75zXwQfkG1vFzR9UujT4IoIuD60JEvvKoJ31QDXnP2e6p30md10ZY0mtX00kEt5ZOKb2CJrd2TQk+KCEDhQRQhJNe/8XNrYbB6GM24aKIMdAVhm+oVN506tNM1oYnnn05ZoYncX7j+dWqFh1PsjilspSfT4Jk0w0WeMt/8q3a4YZfq64BCke1yIjFHsjKYrB5PqzgfW1hpAD/6GXx7a4zptXNRO8Q1lgCoLDU0ntkxjEZDI1Hvke6IBpwaXaap1QEZUdEuYlNxCegFiYu0HjfhDFaPv9VFNJl63KPqlmyDUlFZzU9mUg69UlOUZaQqOdDEinBxgeUob2+eKE2nOD0bqlqlLsMU6OTpObMbLacSGWkn7FBsrWZ+p6FOZrOej97CX8D5kkh28WCzo9AmZWi37Ds3XSsG474anMiSs9a1+8BRWmvpefS9iJDaGt1XPWkVGpIaiR1FcQBIpkQpDVJihBkCJ7z9inLM/de3HJkwKOzdyy/fRAGXoGhEDnjDge6LT5DLqhMPy0w795hRzOGqqIl2G3WhOQMYaQdlcZkR6OyRmUPogOLP2Ji0zEFsTvBrBWBQCKaNM91x/ylSlsDMtzjg5CR3HmDtuMa/yn0xNgeqFwVMQ68WXknP+V8QKGIGlIGY/GxTmXxYdbsuPLiIG062zUHnvqlS+zbH8dbe9DqY7PNoKD0LiP1mzVnTNa0dytReMuws4pQE+pQn6K+e1qxsmZ88nmp5kbZT3N6flAbptvJ8Hw9fhBRPGxlBhDxIWUQG68tnrCQLyoImrglhHU3PBT2ZuT2PFBJrmVINZHDf4JWOm36TUUuW3WHhEjKDhAOq2Xf4H/KWZZyEqez1V8d/hDL4M9Cb1gYYhxzKRMFcEoMW2ypZz8e78eD2P7Etdk+04kusGrF5LhkePjA2lT4V8o7dE5iO6Z9nIeBpWZhDNnrTUKHFdgri1ldp6VNTC3dv2PSbcoe0aY3/0fqYuSCV/uebrr4+pPTQhqPByjVo/3sxaoLD4zhQN9HVvBjrvDn1uWRDhOBj/1ysWPG3No0kTEzLcgxwbUiIQP745M3eMoVK/ho9LF6bEqIhWF71UWgRrF5Z+7rR4cFq/7hC/81nzJksMmzF56J/2AogteT+JQH90NlVLg93aif6JIA4uBCXOEPgparDWCzgSi8/XCe56useaykpSNOT/4rT0nVKZPKDNPbo0n7qbpJJ+pcAp0U9Cje3QychxKhH3Twu0t+ob176HSvI73OabnErxjaOiCaBwWJcYeXIXznAqUogcYbS6xvrLX8MosrkTyHnOdPNAUdFmdrrhtxob+AdbD97huohhCiAul7xSTusD36VWgHaK1z0r/L2Aw7kfZi947jp+OtqqPBAMZ9UwQEReN7skUfgmwzAHwLNIy3oMZQYoAAQHEAcBJoEnhGaOr96Tpde8hyQmfDMrOPWj0Q3i6AVtkh6YSuy8KS79W3X2zvIVojBzDcsBA0g94pcpgfE/wQkvBjzmty+WCbkAq7XQe1+Bm5XMN5
+shares:
+  - |
+    -----BEGIN PGP MESSAGE-----
+
+    hQIMA4Xnr1TWhKdfARAAw56ror4KgLf3T4AvGmoVd4k1NTURMjvXcFIrHzKSr4tR
+    cNs/IRlKPsDbDSC2XCrbO9I/3vhfHpIC7/ffx55WxQPnlKF4dCpoJWQhDcKeTq81
+    +78B+GzETaGfeszDMzH4O4hQUXsff88qnDznAfCkRMpNq2hXRb6Y4KWDNNNK9xdX
+    TbGLVcNGBSTDzNuHAneLCI1LmVKlYXaPWYpeVj7AKtikYZh86IO6cVd629lb1akG
+    KI8zS2pmQ6FyPkl2vRqoDRj2N4F//yRSDOtjnecECsE5CWVK68eZD43aKbqFwqzW
+    Vq9YhCPbSnVOrjgjdyzYiGH6/7SqwNkX78p39SmGr258OlkF2DQPVJUGar4GwZJV
+    PbQ32dYdkDplfP37SdvG7lwgEqro6xioaap+40wdyV4/nvYUp5t/UBc6vjXeqtQy
+    mtxnKyUNU6ZmhVS6WhKsJDViHTC9Jh5GQH1za3hPZv5lSHApbWbCI2oWY10Z/+6g
+    40MpepE4Q2h+hI8jhoxoWjfeDzTAaSNDw8PkQlyYJlURmWxbv4mh0edOYQnbV4r2
+    JKkkIlG1zAlAgdT9WVMSCWFm3dXjvgQUYgxaq/XhEfuOcFbC/Tg1RabA5Z5aCH+Z
+    zYlJqUoTBgLh55W4FGtxpAmUL4RpJGnSllnhtuVZ87Wxx5j1IyMmi5d9tseix6XS
+    XgHXQ4WHd1NpdOgmriBHVfWcZIKYaYJJUopRY+eXI3UdZp7/l9NRQ3kOi5AltlhM
+    c3dKZJ2mKpjB5ZV1z+Do6+3snmJ5n7CHANZWJF7lyq3IMHgXSPUAQd6VZbe2HiM=
+    =C0h6
+    -----END PGP MESSAGE-----
+canShuffleCandidates: true
