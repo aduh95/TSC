@@ -80,7 +80,7 @@ jobs:
         env:
           COMMENTS: ${{ steps.comments.outputs.comments }}
       - name: Install ghcommit 
-        run: go install github.com/planetscale/ghcommit@840639dc8f8aa7236d987a3074781b79cb304fbc
+        run: go install github.com/planetscale/ghcommit@8c6d9af75a7814768ce871cde246224d45bd8c04
       - name: Push to the PR branch
         run: |
           GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
