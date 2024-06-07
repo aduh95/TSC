@@ -1,0 +1,138 @@
+subject: Vote test
+headerInstructions: |
+  Please set a score to each proposal according to your preferences.
+  You should set the highest score to your favorite option.
+  Negative scores are allowed, only the order matters.
+  You can tie two or more proposals if you have no preference.
+  To abstain, keep all the propositions tied.
+candidates:
+  - TODO
+  - TODO
+footerInstructions: |
+  TBD
+method: Condorcet
+allowedVoters:
+  - Antoine du Hamel <duhamelantoine1995@gmail.com>
+  - Anatoli Papirovski <apapirovski@mac.com>
+  - Benjamin Gruenbaum <benjamingr@gmail.com>
+  - Ruben Bridgewater <ruben@bridgewater.de>
+  - Geoffrey Booth <webadmin@geoffreybooth.com>
+  - Gireesh Punathil <gpunathi@in.ibm.com>
+  - James M Snell <jasnell@gmail.com>
+  - Joyee Cheung <joyeec9h3@gmail.com>
+  - Chengzhong Wu <legendecas@gmail.com>
+  - Marco Ippolito <marcoippolito54@gmail.com>
+  - Matteo Collina <matteo.collina@gmail.com>
+  - Michael Dawson <midawson@redhat.com>
+  - Moshe Atlow <moshe@atlow.co.il>
+  - Rafael Gonzaga <rafael.nunu@hotmail.com>
+  - Richard Lau <rlau@redhat.com>
+  - Robert Nagy <ronagy@icloud.com>
+  - Ruy Adorno <ruy@vlt.sh>
+  - Paolo Insogna <paolo@cowtech.it>
+  - Michaël Zasso <targos@protonmail.com>
+  - Tobias Nießen <tniessen@tnie.de>
+publicKey: |
+  -----BEGIN PUBLIC KEY-----
+  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr73fjfK4ugYRxyxrvQAK
+  GVKMPhmFvziKtqq21BdiOMnX0T8hgpOkhI+45uvrF2KapzDh7xz16u+CKXNAchVP
+  TSp1a2rAb/QQPIZABAb/03zfKbVITkRIBx3SQZuxXQJiJsWqEDRLukEixmyqwgUN
+  S2gqyJHutF6RyR4d9cK538E2JLs/CThY65K+5OYMshtgtdiMxq/aFlfbW6USE8gp
+  rKzNihjn13bJ5x0PXUFRTV0CwNBhKbKPQIuci1l2Y34cIDpHj8/hFqsHyjO4bOvh
+  b+MnDIucsI32uECDGRLZCDaQwSCEL3S4VekxF29QDEtlHQA8ZijHy9h1B4KpYQgf
+  HwIDAQAB
+  -----END PUBLIC KEY-----
+encryptedPrivateKey: >-
+  U2FsdGVkX1/ptwMTtFAnkB8mQwzg5qB9KIBZvvFF4ccBE0iqbeUtpvZCVa9HYIri2hBzlkhu1L5u3SlOJQ5ujvv9vRoF7S/tJsnWX3k3lYByidpK4jz3o6C4jFpwGm5uG6pNaTxc5VJjEua0VWRzB3tfbr3X27hF2C0dCWVNAus+aNsXC8Q53PcD8WktH6nNZmCEemUu+XLV77AbYpPmAmD+OHuKy2+vjl7qo7Z0NByOVBaiC3Wy3/LaHB2kORWgcftaaqmwSngnYhVrs2biKbgKM33KPsxhg6ZBryJQFSIXCyOE9/qJySiICQrdVx73sjWGk03eh8ZLTy9paQPwChGaMh6r/v8YmebOPVRZ+Pb5ZMNsI0GK5abOFt8lT103jUvzGuANPp8ifMJ2Pht35IyyIozD2T9FnX/f91GKILt961QM7g/0FVv9mEdqD25jU/Ou49jAsBHRxUrQ5MEnhyWzX1pH3PSZa/NXteWSC+ds3PoVU5HxVnS6TSobyd5oCBtUTZ5BHk751N5mga/5vL4F6/whbr4GrmV5/mLlvyQKKVc6ez2x0e1fEzV70lAuhGmzmMM1a67xKyxI5yTvI/K3vDVa2CGIOeXu6dWBGJvw5eGHLNHW8XFmXiJra7Z7Le6Ut6qF6roly5DKkIqYi23EUdX9frALO2vdfvz69TXRP+av2tbh3nr1Vkl9XL7YyUIAjVJtmJVq9zr86D4eXrLGkGiekz0xvxwocXLQZtr1eWyr9/5y+FVwatDOBjWtzhGc1Aa9Em+4qYR9fplCdXaoLe+4t1+2UOhILWuiSgUhHJcpcGH7Zkr3uANxi4yqXAs1U04CtQNRiPGOkIn9fVuvAp7vngJSMVGtxGn7bk0iV7ykD6cSKn6sF7vp1TNZmQTs/YkWNEH4KQoLegcpcDrpt5rUp1k+4zVXNv07/tfjiSPmzMnuYC1rq7AT5IwacAiGWNPOFKoq7rRaHs2f0fTyp+2tahyvynpgf1jOoMf5rLS/xM3VBAywxaCN99YpW+dIk9cvmBNESqVpxbLTZjN/a1zY4rGxTO7ne0ngbOQWER3ck3Die24lpkR0FxQI3FEs9MDxa34dzeyJXq1KqPc/IOGJU29q/ZyBboVg/9Wkjr5TsmXLnsWQsSCn5kjKynfWnC83MP7P/MTRMUKkyZvM6PFtuc4QF6x6099zcyrFQErWpCpQmoUHw9vL2ksjMfWCxTJgGmqD1ML0fKInoC9iaj0BYDR5RNZEJlbKH0mfMDz4vzDbOQ7phCzA+9SVKwZlnI0Umhzt9HN8hhLYpIkmBDrqDAYneqJWCwpbcOcwyEcjcjvzzz46N+G7YUA9hHGUK5QzxdHgGZ5nnUKbXZ6fC2+zu+vFHKcX52CFYB1G9Hoy5EGfyXtUfD7Ofsc3vaNTWT/xzCsEULzFzNMatADwr8xnxSFu6h7IUG6FXKdy2hGzlVp1BijZlJBWKy1qFKvFsMpyyCqwhIgc5sQdwxaFxmuIGhffYoa13mLrNQ5aivvWTaWIPgb2XwJCrJLrEHi+FqoK2sFamwYuhsqNdPJef2FGdLLJCTrPXXPGCjV4PBm7YkPbAoI3N2EPQRtfvE76IwsyCUeQezK3oQxi75KoMA0Be9dPnyIWeQUz5LKkp27wZd2S0rvHe78vQh3G
+shares:
+  - |
+    -----BEGIN PGP MESSAGE-----
+
+    hQIMA4Xnr1TWhKdfAQ/+Jp47TbDzwsvyxPXhpCSkBapOhctljwKp+vjxmv1qTeCw
+    XN2CNWL9sQIFneHWkVEjRqPY1sFH5xo69Fukgg1aL1cM+yPCJnK6QhneCYu1KDqW
+    bqH8WXDg61Hj2VJgNUgYRh3k7k1D0rdbUD+rfWHpJkzsEiQv26rIIhHxobx71Lqy
+    XeKW5aycdMyrMq8QOTMAt2/LD278rweIGztIMbnc5nnelHd1ERsSXwVKxE0t+eLd
+    tpMot0lNz5eeabdAY7W82MFFgIO7IECqPkDIY73vRM9dCkX/6gAKnMFOr6Q2lB2/
+    Oc13HSddl5YR7nXE/ZyqLT/uuSYXiwb9+kQ9Xsu9s8bggmmQV0NJz0/+JOonIAhO
+    velkOktud7WgNGyXG0rxOrZgu1HYcEVMvl0u0f4uGntlOaqFhvgEqlOPjZdetwiT
+    orA8mqQplaG6MPNPMRY2h1y+phaawsXCKWNluydBv8WH/NWj8z9bI7Icu13jeZlt
+    aTRXm0wZVmL1+YNH1lha1Cl1M4hJSK/MSDcGBbtFDUbmvbv/oyxzitGx2qArxLGM
+    QjzJQAGJr18tRSS2HXswMEQUlchOjPy618B4MeldwdoEllyALUs1iZ0gLY0vtWdH
+    Lf42OH9NKNJud5Y16sh0YGeRCFN44ZiTN1NmZuXfnENAZsVcup7wAkXpfA/fgTjS
+    XQHKaMKWIl7T+YxgFseQN2CGcqyZzyjlN2JKpMEYstxXBvXnIh7BRAf4hMVffmFB
+    WgUEeJxxetKULYHz7sxwnnjqC9XRTkHHcqogfCrAZzVtzauUsxzo1JfsGD1j6A==
+    =WGnu
+    -----END PGP MESSAGE-----
+  - |
+    -----BEGIN PGP MESSAGE-----
+
+    hQIMA8Crf6Tcj0BjAQ/+MBeqgtOjgbEYZ8d5QCZP61tEPHT3SXTatxO8aMMZBe8/
+    sZxFfEG4p1IXznVaDLywq5shO8AQr36bXlVl91fJ/n03Gfgoo6HgpEoieI/am4SX
+    2Js3QmlfXIPGZuV2q3GT4STFP1gtGKHu44ei7Jyxm9eQW/ChE1WWBBeBx0n2UzG/
+    abvP57v/kQIc/HNdlY3DuGRcM0CuWOBnNMP1MHnhL53/DNlPSG4kt7rLAAQcLs2M
+    3crTT2cfOrs+gakhrB/vNbQZH7OUfpjYquIfxBcOdygiEiG/qXwhWB3z28KzET8H
+    MwF/2gNa/VCDYhtUbz2jO3HNFKv5gvEAWJdHcKbn4w2O1P6ulbZ3W2xlXSckqofE
+    3JEYtKCCqZu0uM1JlIXvb6zXtaESuKXtlXRq+cgmp4dVpKpmIep2B4gMBPuTQ/Wh
+    R+9CKJ7qa2FYykcy+OJwLgDl1jWkGPJga59nRVAFV4qFn1wAszZkRo4Qti9cchd0
+    94rPLzkCA1oo0IhwtzWQkiRz47gzUKBOIjSW3SA1i4Phn9ofmRjS4NaleZcLjdqB
+    SEb3zoqUEZFH5HEv//F2nAoDkOAIdVJEDwZ1tps4rUdx4Kt/iKX+ydr/67nVgfI7
+    ipknhhOYDPgxWcAVO+GmRvY8B8acJjSb/0eyRYr4NPKQJcLq03oKcmea9s3WXhjS
+    XwGJjN6gQmAmh1H1Tu5Fzrksy4PerK1QDfElOOmNRO9RDxa4DmOhjUN7m042NqUF
+    nVQVRaXudJb+DhfqAHZo1/KZLZ5oR3eNCmwz6qChF6Xv1Ng02rEAV5gdnaiJNISv
+    =5D2H
+    -----END PGP MESSAGE-----
+  - |
+    -----BEGIN PGP MESSAGE-----
+
+    hQIMA6CMQfEFjOFGAQ//f231F6mZE7fSzcTP2w16L1iRBZFeP7W9nQF63agc5GSE
+    250bgsvycoipWxq3qoG81HSusVka4mE+GMzIRe8KBLFIwYm4UvyAqMc6/SFTZ/hT
+    usQ4V5EJXzKzPBAkeqfciufGnxXMWUfJR7ANfE4klke9StBzMS7kiOl/5gJtEELx
+    63j9zey67IE+MeEHr5X4SDjOgF3FShB/FgwO6ruLo1hF5YX50VUvIAVDcXBKgnan
+    +nu2EseQ5z/UsLPzyHzkjL6Qo4klAa46Cek5FqZVo73DxcCZz6G044XJsz4iTyu2
+    8Q7ZLvK+uHcfu+Yomf3ewYYtpLtZCULZToFRiC1T33uMUv0OJKZrTuOMBie8QlUB
+    MGh06pjb1b8uW/08R2JV920CTB79D5pdLout/SUwThDggGOxqhXN5bvFqiNQlK3V
+    JNQ4BXnrHI7N47c0vL7+x+W2KeFgd7q4TmH83Vjubynq5nYmMGUjCVA6OfoN9am2
+    jp4qATp1wzhqbP2ahyeBWtb49p6yNxzBeOzIfn9K6SKVMHCekcxwzb42Ob1vc8Gk
+    u3mb+f9oeNqvohm9teBKYHZUg7Ur7Xt8wZofN4uKq/y9RhMT/c2quLvxDWoiC2tV
+    pimmBVjdsxntFK1cohvhk/AfQSkd3I7bZejLj8GBIF+UcGIIhSAzw+CdSztHzBDS
+    XQFkxkdWcD8OzESGQ4CPInyStP2hqZAVQlXwbXPCuu74mvP7yGyO0Emyh5as7QMS
+    6aWAtvXvqU9dvzhNp3Wz+pQGbnVAVsW1n0hy3+zhC0qy+YU7Ldh5SPE2EAnneg==
+    =gRii
+    -----END PGP MESSAGE-----
+  - |
+    -----BEGIN PGP MESSAGE-----
+
+    hQIMA+FA9hvFl53MARAAhQiImCnykQa1avFaRkywCWXEjWQxcNKtJ8ZMcH2gg8cf
+    bwWpq4mV9wHNeQKaRuBQb5weitMzANzLfIZx/j2sRQ+9O79zJAzlZZn0xg+GFFNx
+    5YysiBYpxnt11Qz5cBBiSSC4VbRdmOaYFmeTLokXovW1m8qs5CFtMXpy0mP6saCD
+    rfWvg+34OHuXskxMStw/r7XbfN6K0o7menqo6sjnyIe77ugCX8Le55Qh3spPVsuV
+    knT3PeNrhyWDYBmRz+rkyPD0On9BI/CGPvKmun9muw1QzlT9/K4Ee5M59YiNxI2a
+    kIQVtu/j3dGtv1CXeKe3L+snq53upDnFHosN3lkKbTP5MW7vKtWIOD/qL9i2QyCr
+    8sHzk8iNB0qlMGRSgSd8jmLuYWJrSzdvrA98HwvuZGcPSGQSIpzBbALySsDRuHmy
+    vrLsD4ZugxM/FAG/3Qg14H/MnMeGSYFYesP+HmigYuTc8fo01QprdDZ62FtgZlC5
+    5DNczL+Ry7pwtKi9G5WVWBOwqzrITdVXOmFf1U9yYukib8fkI29TZ1P0YEagbzEK
+    Ktj7B1CeB662lihWNRSogeC/dd/t/sJ3eC1AijTh5QByigbm5WoFXvUYUSRhF88U
+    gZoI+IPmSirY9IHWsidJ+HHGAPGQDGl7RhVza2gqbtVNN1ENCd+O+9zDv+FTKGTS
+    XwFrEfuDDaxjgGjKkbouvpDvPfH57iVEvi06NX6AFQRbsH++H7vRyQFr6/7D7eog
+    YeBDMKFvGuGDEKL4nhG/VHVqkWL81OReLTn9bEhW80O9T3EK1GO6dps5XfV/J1Q3
+    =iz9h
+    -----END PGP MESSAGE-----
+  - |
+    -----BEGIN PGP MESSAGE-----
+
+    hQIMA0cIlk+Ahd/nAQ/+Kb4ilnBKFPdae/LrCULTHn01VLgGlz0QKqnmX+Pnhkps
+    sUyQtk2loFP7Bf/J1pJuov8qBzoNZ4BVgpCVw+Jwfp/5GTk50f66qCqi7tEe8nRM
+    HxlJ4OrPWASgXfLjjxeLKGXEE5TcIPEFwSPUoN9zDuiCXA+VUSoKeLDnPpTbzPaY
+    0nxofHKj7y03aJ9UEFiFKgjmrKQ1pz2eeEC14an/PMx2JCjHipWxdCqAhkuB/Jjl
+    KO1t7QZj5qUjud1CyapOf3XLwvwd+nqOh6aIm1rhn2juR6eDQMbhFs+i6lhnfL47
+    tB7XxjeMy/ILZ0dHt3A5d/GDW1ClK7yVpfQIsU+cTiLGSKXz9t9qe03CiWpiQReD
+    fcIWsRpznG79LQT9R8jwRHVKbsxW1nMYDWk3EzCVhVXT/F+1QaDcrc1Z5O/dr2UJ
+    eK4WWgsautLOrCh4x+mntGYSUBZs83mJFTQNGWjvUEoK8L6ZsDxBgTz+HXcvWoOf
+    EfKvGn/nnr6t9xoi3SyECcGu3BBGdvdVzilFgTBY9FAo/reyKvLcV+MqXM+y9WUQ
+    KfPG5dC7iTIHIKnfzfYaO7iGFcKDICoYQcu/i2x5aEEgS4diWSXxPeMKBGmXto01
+    95NcErOPWa/0UTZzR4xPl9ttjzY1oQe+MVOSdb1jthiGCoY3MpIeeBhh3com7jfS
+    XwEGW0lxE+sEHPd1iJ41go2r2k+sbLVKLpC4rLmVVaUMjGDgjVuJbSH62HtN/obQ
+    dolOQVnd/FFi7Mpve4GM6xLTYkyHNdLyQdTu7QaHSjpRECa/uFLDbakFXWT4GFNN
+    =cLC5
+    -----END PGP MESSAGE-----
+canShuffleCandidates: true

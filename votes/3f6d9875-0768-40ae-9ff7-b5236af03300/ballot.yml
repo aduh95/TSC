@@ -1,0 +1,17 @@
+subject: Vote test
+
+# Please set a score to each proposal according to your preferences.
+# You should set the highest score to your favorite option.
+# Negative scores are allowed, only the order matters.
+# You can tie two or more proposals if you have no preference.
+# To abstain, keep all the propositions tied.
+
+preferences:
+  - title: TODO
+    score: 0
+  - title: TODO
+    score: 0
+poolChecksum: >-
+  R1CoCkn62uvcgDOGE9hpY4d9DvwokFwDagJ4Qul7+9JzS9ZxOG2kgoC6z9w+o3yHHo0bemoVwR+TkrlzumshuA==
+
+# TBD
