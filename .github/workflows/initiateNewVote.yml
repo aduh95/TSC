@@ -194,22 +194,20 @@ jobs:
             git revert HEAD --no-edit
             GH_COMMIT_PATH="$(go env GOPATH)/bin/ghcommit" COMMIT_MESSAGE="$(
               git log -1 HEAD --pretty=format:%B
-            )" SHA="$(
-              git rev-parse HEAD^
             )" DELETED_FILES="$(
               git show HEAD --name-only --diff-filter=D --pretty=format:
             )" ADDED_FILES="$(
               git show HEAD --name-only --diff-filter=d --pretty=format:
             )" node --input-type=module <<'EOF'
               import { spawnSync } from "node:child_process";
-              const {GH_COMMIT_PATH, COMMIT_MESSAGE, SHA, DELETED_FILES, ADDED_FILES} = process.env;
+              const {GH_COMMIT_PATH, COMMIT_MESSAGE, DELETED_FILES, ADDED_FILES} = process.env;
               spawnSync(GH_COMMIT_PATH, [
                 '-r', ${{ toJSON(github.repository) }},
-                '-b', ${{ toJSON(steps.data.outputs.branchName) }},
+                '-b', 'initiateNewVote',
                 '-m', COMMIT_MESSAGE,
-                '--sha', SHA,
-                ...DELETED_FILES.split('\n').flatMap(file => ['--delete', file]),
-                ...ADDED_FILES.split('\n').flatMap(file => ['--add', file]),
+                '--sha', ${{ toJSON(github.sha) }},
+                ...DELETED_FILES.split('\n').filter(Boolean).flatMap(file => ['--delete', file]),
+                ...ADDED_FILES.split('\n').filter(Boolean).flatMap(file => ['--add', file]),
               ], { stdio: 'inherit' });
           EOF
           fi
