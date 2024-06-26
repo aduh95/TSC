@@ -25,24 +25,22 @@ jobs:
         id: pr-url
         run: |
           echo "URL=${{ github.event.repository.html_url }}/pull/${{ github.event.inputs.pr || github.event.issue.number }}" >> "$GITHUB_OUTPUT"
-      - name: Filter comments
-        id: comments
-        run: gh pr view ${{ steps.pr-url.outputs.URL }} --json
-          comments --jq '.comments | map(.body | select(contains("-----BEGIN
-          SHAMIR KEY PART-----"))) | "comments=" + tostring' >> "$GITHUB_OUTPUT"
-        env:
-          GH_TOKEN: ${{ github.token }}
       - name: Get PR branch
-        id: branch
-        run: gh pr view ${{ steps.pr-url.outputs.URL }} --json
-          headRefName --jq '"head=" + .headRefName' >> "$GITHUB_OUTPUT"
+        id: pr-info
+        run: |
+          gh pr view ${{ steps.pr-url.outputs.URL }} \
+            --json comments,headRefName,commits \
+            --jq '[
+              (.comments | map(.body | select(contains("-----BEGIN SHAMIR KEY PART-----"))) | "comments=" + tostring),
+              ("head=" + .headRefName),
+              (.commits | length | "nbOfCommits=" + tostring)
+            ] | join("\n")' >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ github.token }}
       - name: Compute number of commits in the PR
         id: nb-of-commits
         run: |
-          NB_OF_COMMITS=$(gh pr view --json commits --jq '.commits | length' "${{ steps.pr-url.outputs.URL }}")
-          echo "exact=$NB_OF_COMMITS" >> $GITHUB_OUTPUT
+          echo "exact=${{ steps.pr-info.outputs.nbOfCommits }}" >> $GITHUB_OUTPUT
           echo "minusOne=$(($NB_OF_COMMITS - 1))" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ github.token }}
@@ -55,17 +53,14 @@ jobs:
         run:
           curl -L https://raw.githubusercontent.com/nodejs/node/main/.mailmap >>
           .mailmap
-      - name: Load vote branch
-        run: |
-          git fetch origin '${{ steps.branch.outputs.head }}'
-          git reset FETCH_HEAD --mixed
-          git checkout HEAD -- '${{ steps.branch.outputs.head }}'
-      - run: npm install @node-core/caritat
+      - name: Fetch vote branch
+        run: git fetch origin '${{ steps.pr-info.outputs.head }}'
+      - run: npm install --no-save @node-core/caritat
       - name: Attempt closing the vote
         id: vote-summary
         run: |
           ./votes/initiateNewVote/decryptPrivateKeyAndCloseVote.mjs \
-            --remote origin --branch "${{ steps.branch.outputs.head }}" \
+            --remote origin --branch "${{ steps.pr-info.outputs.head }}" \
             --fromCommit "FETCH_HEAD~${{ steps.nb-of-commits.outputs.minusOne }}" \
             --toCommit "FETCH_HEAD" \
             --prURL "${{ steps.pr-url.outputs.URL }}" \
@@ -73,7 +68,7 @@ jobs:
             --prepare-json-summary-graphql-query createCommitOnBranch.gql --prepare-json-summary-dirname ./votes \
             --comments "$COMMENTS"
         env:
-          COMMENTS: ${{ steps.comments.outputs.comments }}
+          COMMENTS: ${{ steps.pr-info.outputs.comments }}
       - name: Push to the PR branch
         run: |
           cat createCommitOnBranch.gql
