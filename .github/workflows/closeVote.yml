@@ -55,7 +55,7 @@ jobs:
         run: |
           ./votes/initiateNewVote/decryptPrivateKeyAndCloseVote.mjs \
             --remote origin --branch "$BRANCH" \
-            --fromCommit "FETCH_HEAD~${{ steps.pr-info.outputs.numberOfBallots }}" \
+            --fromCommit "FETCH_HEAD~${{ steps.pr-info.outputs.nbOfBallots }}" \
             --toCommit "FETCH_HEAD" \
             --prURL "${{ steps.pr-info.outputs.URL }}" \
             --save-markdown-summary summaryComment.md \
