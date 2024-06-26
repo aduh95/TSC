@@ -1,0 +1,18 @@
+{
+  "description": "Test final final(3)",
+  "outcome": {
+    "winner(s)": [
+      "A",
+      "TODO",
+      "C"
+    ]
+  },
+  "votes": {
+    "aduh95": {
+      "TODO": 0,
+      "C": 0,
+      "A": 0
+    }
+  },
+  "refs": "https://github.com/aduh95/TSC/pull/29"
+}
