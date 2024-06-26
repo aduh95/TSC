@@ -33,15 +33,8 @@ jobs:
             --jq '[
               (.comments | map(.body | select(contains("-----BEGIN SHAMIR KEY PART-----"))) | "comments=" + tostring),
               ("head=" + .headRefName),
-              (.commits | length | "nbOfCommits=" + tostring)
+              (.commits | length - 1 | "nbOfBallots=" + tostring)
             ] | join("\n")' >> "$GITHUB_OUTPUT"
-        env:
-          GH_TOKEN: ${{ github.token }}
-      - name: Compute number of commits in the PR
-        id: nb-of-commits
-        run: |
-          echo "exact=${{ steps.pr-info.outputs.nbOfCommits }}" >> $GITHUB_OUTPUT
-          echo "minusOne=$(($NB_OF_COMMITS - 1))" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ github.token }}
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332  # v4.1.7
@@ -61,7 +54,7 @@ jobs:
         run: |
           ./votes/initiateNewVote/decryptPrivateKeyAndCloseVote.mjs \
             --remote origin --branch "${{ steps.pr-info.outputs.head }}" \
-            --fromCommit "FETCH_HEAD~${{ steps.nb-of-commits.outputs.minusOne }}" \
+            --fromCommit "FETCH_HEAD~${{ steps.pr-info.outputs.numberOfBallots }}" \
             --toCommit "FETCH_HEAD" \
             --prURL "${{ steps.pr-url.outputs.URL }}" \
             --save-markdown-summary summaryComment.md \
